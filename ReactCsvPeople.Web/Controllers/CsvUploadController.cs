@@ -57,10 +57,31 @@ namespace ReactCsvPeople.Web.Controllers
 
         [HttpPost]
         [Route("deleteall")]
-        public void DeleteAll ()
+        public void DeleteAll()
         {
             var repo = new PeopleRepository(_connectionString);
             repo.DeleteAll();
+        }
+
+        [Route("generatecsv")]
+        public IActionResult GenerateCsv(int amount)
+        {
+            var repo = new PeopleRepository(_connectionString);
+            var peopleList = repo.GetRandomPeople(amount);
+            var csv = GetCsv(peopleList);
+            var bytes = Encoding.UTF8.GetBytes(csv);
+
+            return File(bytes, "APPLICATION/octet-stream", "PeopleCsv.csv");
+        }
+        static string GetCsv(List<Person> ppl)
+        {
+            var builder = new StringBuilder();
+            var stringWriter = new StringWriter(builder);
+
+            using var csv = new CsvWriter(stringWriter, CultureInfo.InvariantCulture);
+            csv.WriteRecords(ppl);
+
+            return builder.ToString();
         }
 
     }

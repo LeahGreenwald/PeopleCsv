@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 
 
@@ -6,8 +5,7 @@ const Generate = () => {
 
     const [amount, setAmount] = useState();
     const generateCsv = async () => {
-        console.log("generate csv clicked");
-        window.location = (`people/generatecsv?amount=${amount}`);
+        window.location = (`/api/csvupload/generatecsv?amount=${amount}`);
     };
 
     return (
