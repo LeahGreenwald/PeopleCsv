@@ -63,26 +63,5 @@ namespace ReactCsvPeople.Web.Controllers
             repo.DeleteAll();
         }
 
-        //[HttpGet]
-        //[Route("generatepeople")]
-        //public void GenerateCsv (int amount)
-        //{
-        //    var repo = new PeopleRepository(_connectionString);
-        //    var list = repo.GetRandomPeople(amount);
-        //    var csv = GetCsv(list);
-        //    var bytes = Encoding.UTF8.GetBytes(csv);
-
-        //    return File(bytes, "APPLICATION/octet-stream");
-        //}
-        //static string GetCsv(List<Person> ppl)
-        //{
-        //    var builder = new StringBuilder();
-        //    var stringWriter = new StringWriter(builder);
-
-        //    using var csv = new CsvWriter(stringWriter, CultureInfo.InvariantCulture);
-        //    csv.WriteRecords(ppl);
-
-        //    return builder.ToString();
-        //}
     }
 }
