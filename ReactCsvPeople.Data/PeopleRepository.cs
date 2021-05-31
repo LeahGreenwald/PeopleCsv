@@ -31,23 +31,6 @@ namespace ReactCsvPeople.Data
             ctx.Database.ExecuteSqlRaw("delete from People");
             ctx.SaveChanges();
         }
-        public List<Person> GetRandomPeople (int count)
-        {
-            var people = new List<Person>();
-
-            for (int i = 1; i <= count; i++)
-            {
-                people.Add(new Person
-                {
-                    Id = 0,
-                    FirstName = Faker.Name.First(),
-                    LastName = Faker.Name.Last(),
-                    Email = Faker.Internet.Email(),
-                    Address = Faker.Address.StreetAddress(),
-                    Age = Faker.RandomNumber.Next()
-                });
-            }
-            return people;
-        }
+        
     }
 }

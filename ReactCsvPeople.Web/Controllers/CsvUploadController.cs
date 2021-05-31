@@ -66,8 +66,7 @@ namespace ReactCsvPeople.Web.Controllers
         [Route("generatecsv")]
         public IActionResult GenerateCsv(int amount)
         {
-            var repo = new PeopleRepository(_connectionString);
-            var peopleList = repo.GetRandomPeople(amount);
+            var peopleList = GetRandomPeople(amount);
             var csv = GetCsv(peopleList);
             var bytes = Encoding.UTF8.GetBytes(csv);
 
@@ -82,6 +81,24 @@ namespace ReactCsvPeople.Web.Controllers
             csv.WriteRecords(ppl);
 
             return builder.ToString();
+        }
+        static  List<Person> GetRandomPeople(int count)
+        {
+            var people = new List<Person>();
+
+            for (int i = 1; i <= count; i++)
+            {
+                people.Add(new Person
+                {
+                    Id = 0,
+                    FirstName = Faker.Name.First(),
+                    LastName = Faker.Name.Last(),
+                    Email = Faker.Internet.Email(),
+                    Address = Faker.Address.StreetAddress(),
+                    Age = Faker.RandomNumber.Next()
+                });
+            }
+            return people;
         }
 
     }
