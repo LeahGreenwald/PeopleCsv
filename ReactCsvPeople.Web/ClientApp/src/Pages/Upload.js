@@ -16,8 +16,8 @@ const Upload = () => {
 
     const onSubmit = async () => {
         const file = fileInputRef.current.files[0];
-        const base64 = await toBase64(file);
-        await axios.post('/api/csvupload/upload', { base64File: base64, name: file.name });
+        const Base64File = await toBase64(file);
+        await axios.post(`/api/csvupload/upload?Base64File=${Base64File}`);
         history.push('/');
     }
 

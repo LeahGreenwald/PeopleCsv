@@ -13,7 +13,8 @@ const Generate = () => {
             <div className="d-flex w-100 justify-content-center align-self-center">
                 <div className="row">
                     <input type="text" className="form-control-lg" placeholder="Amount" value={amount} onChange={e => setAmount(e.target.value)} />
-                </div><div className="row">
+                </div>
+                <div className="row">
                     <div className="col-md-4">
                         <button className="btn btn-primary btn-lg" onClick={generateCsv}>Generate</button>
                     </div>

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using ReactCsvPeople.Data;
-using ReactCsvPeople.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -26,10 +25,10 @@ namespace ReactCsvPeople.Web.Controllers
 
         [HttpPost]
         [Route("upload")]
-        public void Upload(CsvUploadViewModel viewModel)
+        public void Upload(string Base64File)
         {
-            int commaIndex = viewModel.Base64File.IndexOf(',');
-            string base64 = viewModel.Base64File.Substring(commaIndex + 1);
+            int commaIndex = Base64File.IndexOf(',');
+            string base64 = Base64File.Substring(commaIndex + 1);
 
             byte[] fileData = Convert.FromBase64String(base64);
 
